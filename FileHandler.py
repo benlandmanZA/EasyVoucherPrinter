@@ -41,10 +41,10 @@ class FileHandler(object):
            
             header_item_raw = self.header_data[i]
             header_item_value = header_item_raw.split(":")[1]
-           # print("value:",header_item_value)
+           
             
             self.header_dictionary[item] = header_item_value
-            #print("dictionary:",self.header_dictionary[item])
+            
             i+=1
     
     def validateData(self):
@@ -117,9 +117,10 @@ class FileHandler(object):
         
     
     def format(self):
-        with open(self.file_name+"_result.txt", 'w+') as export_file:
-            print("formatted")
-            #print(self.data)
+        output_file_name = self.file_name+"_result.txt"
+        with open(output_file_name, 'w+') as export_file:
+            
+            
         
             sorted_array = []
             count = 0
@@ -155,7 +156,7 @@ class FileHandler(object):
                                 
                             else:
                                 write = sorted_array[y][x]
-                                print("yes")
+                                
                             export_file.write(write)
                         except:
                             pass
@@ -168,6 +169,7 @@ class FileHandler(object):
                     export_file.write("\n"*(row_spacing))
                 else:
                     export_file.write("\n"*(row_spacing-1))
+            print("File successfully formatted and printed to: ",output_file_name)
             
     def index_in_list(self, a_list, index):
         return index < len(a_list)    

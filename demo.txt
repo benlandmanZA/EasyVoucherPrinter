@@ -1,7 +1,7 @@
 download_datetime:2015-11-06 1357
 order_datetime:2015-11-05 1014
 layout_name:Demo
-columns:5
+columns:6
 column_width:25
 column_spacing:5
 left_margin:0

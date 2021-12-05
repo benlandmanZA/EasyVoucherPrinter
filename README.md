@@ -16,7 +16,7 @@ A simple file formatter exercise :)
 4. If the file meets the data validation requirements it will output a file in the same directory with the result('demo_result')!
 
 
-# Demo Program Usage
+# Test Program Usage
 
 1. Assuming you have already cloned the repo, navigate to the child folder labelled testing.
 2. Run VoucherTestingProgram.py in your respective terminal/IDE.

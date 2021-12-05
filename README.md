@@ -14,7 +14,7 @@ A simple file formatter exercise :)
 2. Run VoucherDemoProgram.py in your terminal/IDE. 
 3. You will be prompted to enter the desired input file. Enter only the name of the file, please exclude the extension. You can use the file named 'demo'
 4. If the file meets the data validation requirements it will output a file in the same directory with the result('demo_result')!
-5. Make the required edits and deploy to YOUR GitHub repo for CI/CD.
+
 
 # Demo Program Usage
 

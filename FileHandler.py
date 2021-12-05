@@ -15,9 +15,7 @@ class FileHandler(object):
                 print("Error! Incorrect Header format.")
             else:
                 self.populateHeaderDictionary()
-                if self.validateData() == True:
-                    print("Data Validation Success! Formatting...")
-                    self.format()
+
                 
                 
             
@@ -117,59 +115,61 @@ class FileHandler(object):
         
     
     def format(self):
-        output_file_name = self.file_name+"_result.txt"
-        with open(output_file_name, 'w+') as export_file:
-            
-            
-        
-            sorted_array = []
-            count = 0
-            for z in self.data:
+        if self.validateData() == True:
+            print("Data Validation Success! Formatting...")
+            output_file_name = self.file_name+"_result.txt"
+            with open(output_file_name, 'w+') as export_file:
                 
-                temp_item = ["",""]
-                temp_item.insert(0, z.split(",")[1])
-                temp_item.insert(3, z.split(",")[0])
-                temp_item.insert(4, z.split(",")[2])
-                temp_item.insert(5, z.split(",")[3])
                 
-                sorted_array.insert(count,temp_item)
-                
-                count+=1
             
-            columns = int(self.header_dictionary["columns"])
-            mover = 0
-            column_spacing = int(self.header_dictionary["column_spacing"])
-            column_width = int(self.header_dictionary["column_width"])
-            row_spacing = int(self.header_dictionary["row_spacing"])
-            total_width = column_spacing+column_width
-            total_rows = math.ceil(len(sorted_array)/columns)
-            columnStr = "{:<"+str(total_width)+"}" 
-            for k in range(total_rows):
-                for x in range(6):
-                    for y in range(0+mover,columns+mover):  
-                        try:
-                            if y <(columns+mover)-1:
-                                if sorted_array[y][x] == "":
-                                    write = sorted_array[y][x]
+                sorted_array = []
+                count = 0
+                for z in self.data:
+                    
+                    temp_item = ["",""]
+                    temp_item.insert(0, z.split(",")[1])
+                    temp_item.insert(3, z.split(",")[0])
+                    temp_item.insert(4, z.split(",")[2])
+                    temp_item.insert(5, z.split(",")[3])
+                    
+                    sorted_array.insert(count,temp_item)
+                    
+                    count+=1
+                
+                columns = int(self.header_dictionary["columns"])
+                mover = 0
+                column_spacing = int(self.header_dictionary["column_spacing"])
+                column_width = int(self.header_dictionary["column_width"])
+                row_spacing = int(self.header_dictionary["row_spacing"])
+                total_width = column_spacing+column_width
+                total_rows = math.ceil(len(sorted_array)/columns)
+                columnStr = "{:<"+str(total_width)+"}" 
+                for k in range(total_rows):
+                    for x in range(6):
+                        for y in range(0+mover,columns+mover):  
+                            try:
+                                if y <(columns+mover)-1:
+                                    if sorted_array[y][x] == "":
+                                        write = sorted_array[y][x]
+                                    else:
+                                        write = columnStr.format(sorted_array[y][x])
+                                    
                                 else:
-                                    write = columnStr.format(sorted_array[y][x])
+                                    write = sorted_array[y][x]
+                                    
+                                export_file.write(write)
+                            except:
+                                pass
+                            finally:
+                                pass
                                 
-                            else:
-                                write = sorted_array[y][x]
-                                
-                            export_file.write(write)
-                        except:
-                            pass
-                        finally:
-                            pass
-                            
-                    export_file.write("\n")
-                mover+=columns
-                if k<total_rows-1:
-                    export_file.write("\n"*(row_spacing))
-                else:
-                    export_file.write("\n"*(row_spacing-1))
-            print("File successfully formatted and printed to: ",output_file_name)
+                        export_file.write("\n")
+                    mover+=columns
+                    if k<total_rows-1:
+                        export_file.write("\n"*(row_spacing))
+                    else:
+                        export_file.write("\n"*(row_spacing-1))
+                print("File successfully formatted and printed to: ",output_file_name)
             
     def index_in_list(self, a_list, index):
         return index < len(a_list)    

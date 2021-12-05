@@ -87,19 +87,19 @@ class FileHandler(object):
             summary1success = True
             
         else:
-            failed_list.append(summary1Key)
+            failed_list.append([summary1Key, summary1Amount, summary1Count])
             
         
         if summary2Count == summary2Amount:
             summary2success = True
         else:
-            failed_list.append(summary2Key)        
+            failed_list.append([summary2Key, summary2Amount, summary2Count])       
         
         
         if summary3Count == summary3Amount:
             summary3success = True
         else:
-            failed_list.append(summary3Key)            
+            failed_list.append([summary3Key, summary3Amount, summary3Count])         
         
         
         if summary1success and summary2success and summary3success:
@@ -107,7 +107,12 @@ class FileHandler(object):
         if success:
             return True
         else:
-            print("Error!Data Validation failed.The following Voucher(s) did not validate:",failed_list)
+            print("Error! Data Validation failed with the following Voucher(s):")
+            for item in failed_list:
+                print("Voucher summary name:",item[0])
+                print("Voucher amount stated in header:",item[1])
+                print("Voucher amount found in data:",item[2])
+                print("------------------------------------")
             return False
         
     

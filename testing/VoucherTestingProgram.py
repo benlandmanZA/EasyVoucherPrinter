@@ -17,7 +17,7 @@ def main():
     print("--------------------------------")
     
     
-    #print(filecmp.cmp('demo_result.txt', 'expected.txt'))
+    
     print("~~~~~~~~~~~~~Test 2~~~~~~~~~~~~~")
     print("Test 2: Header Dictionary Data Saving.")
     result2 = testobj.headerDataTest()

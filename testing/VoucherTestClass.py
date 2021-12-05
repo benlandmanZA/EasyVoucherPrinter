@@ -27,7 +27,7 @@ class VoucherTests(object):
             return True
         else:
             return False
-    def fileOutputTest(self):
+    def fileOutputTest(self): #Does a byte by byte test on the contents of the files to ensure they are matching the structure exactly.
         voucherObj = FileHandler("fileOutputTestInput")
         voucherObj.format()
         

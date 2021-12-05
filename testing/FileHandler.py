@@ -12,7 +12,7 @@ class FileHandler(object):
             self.header_data = all_data[:18]
             self.data = all_data[18:]
             if self.checkHeaderSyntax() == False:
-                print("Error! Incorrect Header format.")
+                print("Error! Incorrect Header structure.")
             else:
                 self.populateHeaderDictionary()
 

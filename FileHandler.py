@@ -3,7 +3,7 @@ import math
 class FileHandler(object):
    
     
-    def __init__(self, file_name):
+    def __init__(self, file_name): #constructor function to allow module to be callable from another class.
         
         self.file_name = file_name
         self.header_dictionary = {"download_datetime":"","order_datetime": "","layout_name":"","columns":0,"column_width":0,"column_spacing":0,"left_margin":0,"row_spacing":5,"line_item1":"","line_item2":"","line_item3":"","line_item4":"","line_item5":"","line_item6":"","voucher_summary1":"","voucher_summary2":"","voucher_summary3":"","voucher_fields":""}
@@ -19,7 +19,7 @@ class FileHandler(object):
                 
                 
             
-    def checkHeaderSyntax(self):
+    def checkHeaderSyntax(self): #function to check that the header follows the correct header structure
         header_syntax = ["download_datetime","order_datetime","layout_name","columns","column_width","column_spacing","left_margin","row_spacing","line_item","line_item","line_item","line_item","line_item","line_item","voucher_summary","voucher_summary","voucher_summary","voucher_fields"]
         i = 0
         for item in header_syntax:
@@ -33,7 +33,7 @@ class FileHandler(object):
                 return False
                 
         return True   
-    def populateHeaderDictionary(self):
+    def populateHeaderDictionary(self): #populated the empty dictionary attribute with data from the file header.
         i = 0
         for item in self.header_dictionary:
            
@@ -45,7 +45,7 @@ class FileHandler(object):
             
             i+=1
     
-    def validateData(self):
+    def validateData(self): #does validation tests to by ensuring the count of the voucher matches the stated amount in header.
         success = False
         summary1success = False
         summary2success = False
@@ -114,7 +114,7 @@ class FileHandler(object):
             return False
         
     
-    def format(self):
+    def format(self):  #handles the the formatting and writing into the _result file
         if self.validateData() == True:
             print("Data Validation Success! Formatting...")
             output_file_name = self.file_name+"_result.txt"
@@ -124,7 +124,7 @@ class FileHandler(object):
             
                 sorted_array = []
                 count = 0
-                for z in self.data:
+                for z in self.data:                         #Creates temp line item array in correct order
                     
                     temp_item = ["",""]
                     temp_item.insert(0, z.split(",")[1])
@@ -144,7 +144,7 @@ class FileHandler(object):
                 total_width = column_spacing+column_width
                 total_rows = math.ceil(len(sorted_array)/columns)
                 columnStr = "{:<"+str(total_width)+"}" 
-                for k in range(total_rows):
+                for k in range(total_rows): #Cubic algorithm to print the data to a file in the correct format.
                     for x in range(6):
                         for y in range(0+mover,columns+mover):  
                             try:
@@ -171,9 +171,9 @@ class FileHandler(object):
                         export_file.write("\n"*(row_spacing-1))
                 print("File successfully formatted and printed to: ",output_file_name)
             
-    def index_in_list(self, a_list, index):
+    def index_in_list(self, a_list, index):  
         return index < len(a_list)    
-    def getData(self):
+    def getData(self):                  #accessor functions
         return self.data
     def getHeaderData(self):
         return self.header_data

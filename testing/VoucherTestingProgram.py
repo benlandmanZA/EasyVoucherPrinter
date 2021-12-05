@@ -45,7 +45,25 @@ def main():
     else:
         print("Test 4 Result: Failed!")    
     print("--------------------------------")            
-    
+    print("~~~~~~~~~Tests Summary~~~~~~~~~~")
+    if result1:
+        print("Test 1 Result: Passed!")
+    else:
+        print("Test 1 Result: Failed!")
+    if result2:
+        print("Test 2 Result: Passed!")
+    else:
+        print("Test 2 Result: Failed!")
+    if result3:
+        print("Test 3 Result: Passed!")
+    else:
+        print("Test 3 Result: Failed!")
+    if result4:
+        print("Test 4 Result: Passed!")
+    else:
+        print("Test 4 Result: Failed!")
+    print("--------------------------------")
+    print("End of Testing Program!")
 
 if __name__ == '__main__':
     main()
